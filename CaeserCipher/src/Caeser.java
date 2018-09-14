@@ -1,87 +1,108 @@
+import java.util.Scanner;
 
 public class Caeser {
-	public class Ceaser {
-		static String GetCipherAction() {
 
-			Scanner scanner = new Scanner(System.in);
-			System.out.print("Please enter \"Cipher\" or \"UnCipher\"");
-			String getAction = scanner.nextLine();
-			return getAction;
-		}
+	static void GetBetterVision() {
+		System.out.println("--------------------------------------");
+	}
 
-		static int GetCipehrKey() {
+	static String GetScanner() {
+		Scanner scanner = new Scanner(System.in);
+		String getString = scanner.nextLine();
+		return getString;
+	}
 
-			Scanner scanner = new Scanner(System.in);
-			System.out.print("Please enter Cipher key number: ");
-			int getCipherKey = scanner.nextInt();
-			return getCipherKey;
-		}
+	static String GetCipherAction() {
+		GetBetterVision();
+		System.out.print("Please enter \"Cipher\" or \"UnCipher\"");
+		String getAction = GetScanner();
+		return getAction;
+	}
 
-		static String GetWord() {
+	static int GetCipehrKey() {
+		GetBetterVision();
+		System.out.print("Please enter Cipher key number: ");
+		int getCipherKey = Integer.valueOf(GetScanner());
+		return getCipherKey;
+	}
 
-			Scanner scanner = new Scanner(System.in);
-			System.out.print("Please enter a word: ");
-			String getWord = scanner.nextLine();
-			return getWord;
+	static String GetWord() {
+		GetBetterVision();
+		System.out.print("Please enter a word: ");
+		String getWord = GetScanner();
+		return getWord;
 
-		}
+	}
 
-		static String Cipher(String toCipher, int cipherKey, char[] alphabetBig, char[] alphabetSmall) {
+	static String CipherWord(String wordToCipher, int cipherKey, char[] alphabetBig, char[] alphabetSmall) {
 
-			
-			char[] toCipherChar = toCipher.toCharArray();
-			char[] newWord = new char[toCipherChar.length];
+		char[] wordToCipherChar = wordToCipher.toCharArray();
+		char[] newWord = new char[wordToCipherChar.length];
 
-			for (int i = 0; i < toCipherChar.length; i++) {
-				for (int j = 0; j < alphabetBig.length; j++) {
-					if (toCipherChar[i] == alphabetBig[j] ) {
-						newWord[i] = alphabetBig[j + cipherKey];
-					} else if (toCipherChar[i] == alphabetSmall[j] ) {
-						newWord[i] = alphabetSmall[j + cipherKey];
-					}
+		for (int i = 0; i < wordToCipherChar.length; i++) {
+			for (int j = 0; j < alphabetBig.length; j++) {
+				if (wordToCipherChar[i] == alphabetBig[j]) {
+					newWord[i] = alphabetBig[j + cipherKey];
+					break;
+				} else if (wordToCipherChar[i] == alphabetSmall[j]) {
+					newWord[i] = alphabetSmall[j + cipherKey];
+					break;
 				}
 			}
-
-			return String.valueOf(newWord);
 		}
 
-		static String UnCipher(String toUnCipher, int cipherKey, char[] alphabetBig, char []alphabetSmall) {
+		return String.valueOf(newWord);
+	}
 
-			char[] toUnCipherChar = toUnCipher.toCharArray();
-			char[] newWord = new char[toUnCipherChar.length];
+	static String UnCipherWord(String toUnCipher, int cipherKey, char[] alphabetBig, char[] alphabetSmall) {
 
-			for (int i = 0; i < toUnCipherChar.length; i++) {
-				for (int j = 0; j < alphabetBig.length; j++) {
-					if (toUnCipherChar[i] == alphabetBig[j] ) {
-						newWord[i] = alphabetBig[j - cipherKey];
-					} else if (toUnCipherChar[i] == alphabetSmall[j] ) {
-						newWord[i] = alphabetSmall[j - cipherKey];
-					}
+		char[] toUnCipherChar = toUnCipher.toCharArray();
+		char[] newWord = new char[toUnCipherChar.length];
+
+		for (int i = 0; i < toUnCipherChar.length; i++) {
+			for (int j = 0; j < alphabetBig.length; j++) {
+				if (toUnCipherChar[i] == alphabetBig[j]) {
+					newWord[i] = alphabetBig[j - cipherKey];
+				} else if (toUnCipherChar[i] == alphabetSmall[j]) {
+					newWord[i] = alphabetSmall[j - cipherKey];
 				}
 			}
-
-			return String.valueOf(newWord);
-
 		}
 
-		public static void main(String[] args) {
+		return String.valueOf(newWord);
 
-			char[] alphabetSmall = {'а', 'б', 'в', 'г', 'д', 'е','ж', 'з', 'и', 'й', 'к','л', 'м','н',
-					'о', 'п', 'р','с','т', 'у', 'ф', 'х', 'ц','ч', 'ш', 'щ', 'ъ', 'ь', 'ю', 'я' };
-			char[] alphabetBig = {'А', 'Б', 'В', 'Г', 'Д', 'Е','Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н',
-					'О', 'П', 'Р', 'С', 'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ь', 'Ю', 'Я' };
-			String action = GetCipherAction();
-			String word = GetWord();
-			int cipherKey = GetCipehrKey();
+	}
 
-			if (action.equals("Cipher")) {
-					System.out.println(Cipher(word, cipherKey, alphabetBig, alphabetSmall));
-			} else if (action.equals("UnCipher")) {
-					System.out.println(UnCipher(word, cipherKey, alphabetBig, alphabetSmall));
-			} else {
-				System.out.println("Invalid Data");
-			}
+	public static void main(String[] args) {
 
+		String cipher = "Cipher";
+		String unCipher = "Uncipher";
+		String cipheredWord = "";
+		String unCipheredWord = "";
+		String UserAction = "";
+		String word = "";
+		int cipherKey = 0;
+		char[] alphabetSmall = { 'а', 'б', 'в', 'г', 'д', 'е', 'ж', 'з', 'и', 'й', 'к', 'л', 'м', 'н', 'о', 'п', 'р',
+				'с', 'т', 'у', 'ф', 'х', 'ц', 'ч', 'ш', 'щ', 'ъ', 'ь', 'ю', 'я' };
+		char[] alphabetBig = { 'А', 'Б', 'В', 'Г', 'Д', 'Е', 'Ж', 'З', 'И', 'Й', 'К', 'Л', 'М', 'Н', 'О', 'П', 'Р', 'С',
+				'Т', 'У', 'Ф', 'Х', 'Ц', 'Ч', 'Ш', 'Щ', 'Ъ', 'Ь', 'Ю', 'Я' };
+
+		UserAction = GetCipherAction();
+		word = GetWord();
+		cipherKey = GetCipehrKey();
+
+		if (UserAction.equals(cipher)) {
+			cipheredWord = (CipherWord(word, cipherKey, alphabetBig, alphabetSmall));
+			GetBetterVision();
+			System.out.println("Кодираната дума е: " + cipheredWord);
+			GetBetterVision();
+		} else if (UserAction.equals(unCipher)) {
+			unCipheredWord = (UnCipherWord(word, cipherKey, alphabetBig, alphabetSmall));
+			GetBetterVision();
+			System.out.println("Разкодираната дума е : " + unCipheredWord);
+			GetBetterVision();
 		}
+
+	}
 
 }

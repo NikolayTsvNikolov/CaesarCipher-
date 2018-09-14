@@ -1,0 +1,108 @@
+import java.util.Scanner;
+
+public class Caeser {
+
+	static void GetBetterVision() {
+		System.out.println("--------------------------------------");
+	}
+
+	static String GetScanner() {
+		Scanner scanner = new Scanner(System.in);
+		String getString = scanner.nextLine();
+		return getString;
+	}
+
+	static String GetCipherAction() {
+		GetBetterVision();
+		System.out.print("Please enter \"Cipher\" or \"UnCipher\"");
+		String getAction = GetScanner();
+		return getAction;
+	}
+
+	static int GetCipehrKey() {
+		GetBetterVision();
+		System.out.print("Please enter Cipher key number: ");
+		int getCipherKey = Integer.valueOf(GetScanner());
+		return getCipherKey;
+	}
+
+	static String GetWord() {
+		GetBetterVision();
+		System.out.print("Please enter a word: ");
+		String getWord = GetScanner();
+		return getWord;
+
+	}
+
+	static String Cipher(String toCipher, int cipherKey, char[] alphabetBig, char[] alphabetSmall) {
+
+		char[] toCipherChar = toCipher.toCharArray();
+		char[] newWord = new char[toCipherChar.length];
+
+		for (int i = 0; i < toCipherChar.length; i++) {
+			for (int j = 0; j < alphabetBig.length; j++) {
+				if (toCipherChar[i] == alphabetBig[j]) {
+					newWord[i] = alphabetBig[j + cipherKey];
+					break;
+				} else if (toCipherChar[i] == alphabetSmall[j]) {
+					newWord[i] = alphabetSmall[j + cipherKey];
+					break;
+				}
+			}
+		}
+
+		return String.valueOf(newWord);
+	}
+
+	static String UnCipher(String toUnCipher, int cipherKey, char[] alphabetBig, char[] alphabetSmall) {
+
+		char[] toUnCipherChar = toUnCipher.toCharArray();
+		char[] newWord = new char[toUnCipherChar.length];
+
+		for (int i = 0; i < toUnCipherChar.length; i++) {
+			for (int j = 0; j < alphabetBig.length; j++) {
+				if (toUnCipherChar[i] == alphabetBig[j]) {
+					newWord[i] = alphabetBig[j - cipherKey];
+				} else if (toUnCipherChar[i] == alphabetSmall[j]) {
+					newWord[i] = alphabetSmall[j - cipherKey];
+				}
+			}
+		}
+
+		return String.valueOf(newWord);
+
+	}
+
+	public static void main(String[] args) {
+
+		String cipher = "cipher";
+		String unCipher = "uncipher";
+		String ciphered = "";
+		String unCiphered = "";
+		String action = "";
+		String word = "";
+		int cipherKey = 0;
+		char[] alphabetSmall = { 'à', 'á', 'â', 'ã', 'ä', 'å', 'æ', 'ç', 'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ð',
+				'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', '÷', 'ø', 'ù', 'ú', 'ü', 'þ', 'ÿ' };
+		char[] alphabetBig = { 'À', 'Á', 'Â', 'Ã', 'Ä', 'Å', 'Æ', 'Ç', 'È', 'É', 'Ê', 'Ë', 'Ì', 'Í', 'Î', 'Ï', 'Ð', 'Ñ',
+				'Ò', 'Ó', 'Ô', 'Õ', 'Ö', '×', 'Ø', 'Ù', 'Ú', 'Ü', 'Þ', 'ß' };
+
+		action = GetCipherAction();
+		word = GetWord();
+		cipherKey = GetCipehrKey();
+
+		if (action.equals(cipher)) {
+			ciphered = (Cipher(word, cipherKey, alphabetBig, alphabetSmall));
+			GetBetterVision();
+			System.out.println(ciphered);
+			GetBetterVision();
+		} else if (action.equals(unCipher)) {
+			unCiphered = (UnCipher(word, cipherKey, alphabetBig, alphabetSmall));
+			GetBetterVision();
+			System.out.println(unCiphered);
+			GetBetterVision();
+		}
+
+	}
+
+}
