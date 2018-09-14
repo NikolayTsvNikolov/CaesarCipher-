@@ -63,10 +63,8 @@ public class Caeser {
 			for (int j = 0; j < alphabetBig.length; j++) {
 				if (toUnCipherChar[i] == alphabetBig[j]) {
 					newWord[i] = alphabetBig[j - cipherKey];
-					break;
 				} else if (toUnCipherChar[i] == alphabetSmall[j]) {
 					newWord[i] = alphabetSmall[j - cipherKey];
-					break;
 				}
 			}
 		}
